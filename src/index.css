@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+body {
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+
+  /* font-family: montserrat,Open Sans,sans-serif;   */
+  font-family: Roboto,Open Sans,Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+span {
+  font-family: Roboto,Open Sans,Arial,Helvetica,sans-serif;
+}
+
