@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "./components/Header";
 import LandingScreen from "./components/LandingScreen";
 import Nav from "./components/Nav";
@@ -9,7 +8,9 @@ function App(props) {
       <Header />
 
       <Nav />
-      <LandingScreen />
+      <main>
+        <LandingScreen />
+      </main>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, qui.
         Atque qui tenetur enim modi rerum sint eos excepturi totam, magni

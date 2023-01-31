@@ -12,10 +12,6 @@ const Nav = (props) => {
     const [request, setRequest] = useState("");
     // const [isNavOpened, setIsNavOpened] = useState(false);
 
-    useEffect(() => {
-
-    }, [isNavOpened])
-
     const handleFocus = () => {
         document.getElementById("research").focus();
     }
@@ -23,8 +19,6 @@ const Nav = (props) => {
     const handleSetRequest = (e) => {
         setRequest(e.target.value);
     }
-    console.log("isNavOpened : ", isNavOpened)
-    console.log("isNavOpened : ", isNavOpened)
 
     return (
         <O>

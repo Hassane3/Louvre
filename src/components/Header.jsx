@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { UseStateContext } from '../contexts/ContextProvider'
 
@@ -6,9 +6,44 @@ import { MenuSearch, LouvreLogo, Ticket, Cart, ArrowTip } from '../features/icon
 
 
 const Header = (props) => {
+    const shouldHideBar = useRef(false);
+    const [scrollValue, setScrollValue] = useState(0);
+
+
+
+    const handleScroll = () => {
+
+        if (window.scrollY > 300) {
+            if (window.scrollY > (scrollValue + 100)) {
+                shouldHideBar.current = true;
+                // Je cache le header
+            } else if (window.scrollY < (scrollValue - 100)) {
+                shouldHideBar.current = false;
+                //J'affiche le header
+            }
+        } else {
+            shouldHideBar.current = false;
+        }
+        setTimeout(() => {
+            setScrollValue(window.scrollY);
+        }, 500)
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll)
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [scrollValue])
+
     const { handleNavMenu } = UseStateContext()
+    const headerRef = useRef();
     return (
-        <HeaderBar>
+        <HeaderBar ref={headerRef}
+            style={{
+                transform: shouldHideBar.current ? "translateY(-100%)" : "translateY(0%)"
+            }}
+        >
             <FirstRow>
                 <div>
                     <Menu>
@@ -56,8 +91,8 @@ const HeaderBar = styled.div`
     top: 0;
     z-index: 10;
     padding: 20px 20px 0 20px;
-    /* transition: transform 0.4s */
-
+    transition: all ease-Out 0.3s;
+    
 `;
 
 const FirstRow = styled.div`

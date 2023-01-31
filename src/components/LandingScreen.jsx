@@ -34,6 +34,8 @@ const LandingScreen = () => {
         }
     }, [])
 
+
+
     const vidRef = useRef();
     const handleVideo = () => {
         console.log("VIDEO ==> ", isVideoPlaying)
@@ -47,15 +49,9 @@ const LandingScreen = () => {
             <video id="LandingVideo"
                 autoPlay loop playsInline muted
                 ref={vidRef}
-            // poster=''
+                poster="/images/cour-napoleon-et-pyramide_1.webp"
+                src={screenSize > 920 ? ("/videos/video_large.mp4") : "/videos/video.mp4"}
             >
-                {screenSize > 920 ?
-                    <source src="/videos/video_large.mp4" type='video/mp4' />
-                    :
-                    <source src="/videos/video.mp4" type='video/mp4' />
-                }
-                <img src="/images/cour-napoleon-et-pyramide_1.webp" alt="" />
-
             </video>
             <LandingContent>
                 <div>
@@ -78,9 +74,9 @@ const LandingScreen = () => {
                     </span>
                     <i onClick={() => handleVideo()}>
                         {isVideoPlaying ?
-                            <PlayVideo color="#fff" width="1em" height="1em" />
+                            <PauseVideo color="#fff" width="1em" height="1em" />
                             :
-                            <PauseVideo color="#fff" width="1em" height="1em" />}
+                            <PlayVideo color="#fff" width="1em" height="1em" />}
                     </i>
                 </div>
             </LandingContent>
