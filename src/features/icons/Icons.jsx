@@ -150,5 +150,25 @@ export const Pinterest = (props) => {
         </svg>
     )
 }
+export const PauseVideo = (props) => {
+    const { color, width, height } = props
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width={width} height={height} focusable="false" aria-hidden="true">
+            <path d="M5.8 14.4H3.6V1.6h2.2v12.8zm6.6 0h-2.2V1.6h2.2v12.8z"
+                fill={color}>
+            </path>
+        </svg>
+    )
+}
+export const PlayVideo = (props) => {
+    const { color, width, height } = props
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width={width} height={height} focusable="false" aria-hidden="true">
+            <path d="m14.4 8-9.6 6.4V1.6z"
+                fill={color}>
+            </path>
+        </svg>
+    )
+}
 
 // export default icons

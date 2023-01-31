@@ -2,10 +2,8 @@ import { useState } from "react";
 import Header from "./components/Header";
 import LandingScreen from "./components/LandingScreen";
 import Nav from "./components/Nav";
-import { UseStateContext } from "./contexts/ContextProvider";
 
 function App(props) {
-  const { isNavOpened } = UseStateContext();
   return (
     <div className="App">
       <Header />

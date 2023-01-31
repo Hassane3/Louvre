@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { LaunchArrow, Ticket } from '../features/icons/Icons'
+
+import { LaunchArrow, PauseVideo, PlayVideo, Ticket } from '../features/icons/Icons'
 import * as presetStyles from './PresetsStyles'
+import { UseStateContext } from '../contexts/ContextProvider'
 
 const LandingScreen = () => {
 
+    const { isVideoPlaying, setIsVideoPlaying } = UseStateContext();
     // const [isWindowLarge, setIsWindowLarge] = useState(Boolean)
-    const [screenSize, setScreenSize] = useState(window.innerWidth)
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
 
     //debounce function allows to minimise number of re-runders in time:
     function debounce(fn, ms) {
@@ -31,9 +34,21 @@ const LandingScreen = () => {
         }
     }, [])
 
+    const vidRef = useRef();
+    const handleVideo = () => {
+        console.log("VIDEO ==> ", isVideoPlaying)
+        !isVideoPlaying ? vidRef.current.play()
+            :
+            vidRef.current.pause()
+        setIsVideoPlaying(!isVideoPlaying);
+    }
     return (
         <LandingContainer>
-            <video autoPlay loop playsInline muted>
+            <video id="LandingVideo"
+                autoPlay loop playsInline muted
+                ref={vidRef}
+            // poster=''
+            >
                 {screenSize > 920 ?
                     <source src="/videos/video_large.mp4" type='video/mp4' />
                     :
@@ -61,8 +76,13 @@ const LandingScreen = () => {
                         <span>Voir les jours d'accès aux collections</span>
                         <i><LaunchArrow color="#fff" width="1em" heigh="1em" /></i>
                     </span>
+                    <i onClick={() => handleVideo()}>
+                        {isVideoPlaying ?
+                            <PlayVideo color="#fff" width="1em" height="1em" />
+                            :
+                            <PauseVideo color="#fff" width="1em" height="1em" />}
+                    </i>
                 </div>
-
             </LandingContent>
 
         </LandingContainer>
@@ -88,7 +108,7 @@ const LandingContainer = styled.div`
 }
     &:before {
             content: "";
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.5);
             width: 100%;
             height: 100%;
             position: absolute;
@@ -105,7 +125,7 @@ const LandingContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 6vh 30vw 6vh 16vw;
+    padding: 4vh 0;
     span {
         font-size: 16px;
         color: #fff;
@@ -118,7 +138,8 @@ const LandingContent = styled.div`
         height: inherit;
         align-items: flex-start;
         justify-content: center;
-            
+        padding-left: 10vw;
+        padding-right: 30vw;    
         h2 {
             font-size : 70px;
             font-family: 'Aboreto';
@@ -130,6 +151,8 @@ const LandingContent = styled.div`
         display: flex;
         align-items: flex-start;
         flex-wrap: wrap;
+        padding-left: 10vw;
+        padding-right: 4vw;
         /* margin: 20vh 10vw; */
 
         /* button {
@@ -139,9 +162,12 @@ const LandingContent = styled.div`
             align-items: center;
 
         } */
-        i {
+        >span i {
             display:flex;   
             margin-left: 10px;
+            :hover {
+                cursor: pointer;
+            }
             svg {
                 transform: translateX(0px);
                 transition: all 0.5s;
@@ -169,7 +195,7 @@ const LandingContent = styled.div`
            }
         }
         > span:nth-child(2) {
-            cursor: pointer;
+            flex: 1;
             &:hover {
                 > span:nth-child(2)  {
                 text-decoration: underline;
@@ -177,14 +203,27 @@ const LandingContent = styled.div`
             }
            
         }
+        i {
+            cursor: pointer;
+        }
     }
-
+    @media screen and (max-width: 900px) {
+        p, span {
+            font-size : 12px;
+        }
+    }
     @media screen and (max-width: 740px) {
+
+        /* padding: 6vh 6vw; */
         div:first-child {
             align-items: center;
+            padding: 0 4vw 0 4vw; 
+            button {
+                padding: 16px 24px;
+            }
         }
-        padding: 6vh 6vw;
         div:nth-child(2) {
+            padding: 0 6vw 0 6vw;
             /* margin: 0 10vw; */
             > span > span:first-child {
                 min-width: 30px;
@@ -195,6 +234,9 @@ const LandingContent = styled.div`
         & div:first-child h2 {
             font-size : 40px;
             text-align: center;
+        }
+        p, span {
+            font-size : 12px;
         }
     }
 `;
