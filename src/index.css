@@ -4,6 +4,7 @@
   padding: 0;
 }
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap');
 body {
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
@@ -16,10 +17,11 @@ body {
   font-family: Roboto,Open Sans,Arial,Helvetica,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font-family: Garamond; */
 }
 
 
-span {
+span, p {
   font-family: Roboto,Open Sans,Arial,Helvetica,sans-serif;
 }
 
