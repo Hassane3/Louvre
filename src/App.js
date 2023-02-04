@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import ALaUne from "./components/ALaUne";
 import { LaunchArrow } from "./features/icons/Icons";
 import styled from "styled-components";
+import LouvrePlus from "./components/LouvrePlus";
 
 function App(props) {
   const [shouldShowBtn, setShouldShowBtn] = useState(false);
@@ -41,6 +42,7 @@ function App(props) {
       <main>
         <LandingScreen />
         <ALaUne />
+        <LouvrePlus />
       </main>
     </div>
   );
